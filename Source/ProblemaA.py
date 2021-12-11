@@ -2,7 +2,7 @@
     Tony Santiago Montes Buitrago
     Juan Carlos Marin Morales
 """
-from helper import In,Out,define,timer
+from helper import InA,Out,define,timer
 
 global r
 
@@ -27,7 +27,7 @@ def cp(n:int) -> float:
 
 def main():
     outs:list = []
-    for n,A,B,C,D in In(int,float,float,float,float):
+    for n,A,B,C,D in InA(int,float,float,float,float):
         fill_r(n,A,B,C,D)
         outs.append(cp(n))
     Out(outs)

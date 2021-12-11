@@ -2,19 +2,16 @@
     Tony Santiago Montes Buitrago
     Juan Carlos Marin Morales
 """
-from helper import Out,define
-
-def In():
-    #inputs for problem C are different
-    ...
+from helper import InC,Out,define,timer
 
 def main():
     outs:list = []
-    for inputs in In():
+    for inputs in InC():
         ...
     Out(outs)
 
 if __name__ == "__main__":
+    define("C")
     try:
         main()
     except Exception as e:

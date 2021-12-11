@@ -2,11 +2,11 @@
     Tony Santiago Montes Buitrago
     Juan Carlos Marin Morales
 """
-from helper import In,Out,define
+from helper import InB,Out,define,timer
 
 def main():
     outs:list = []
-    for inputs in In():
+    for inputs in InB():
         ...
     Out(outs)
 

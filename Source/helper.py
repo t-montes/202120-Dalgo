@@ -5,14 +5,20 @@ def define(name:str):
     global _name
     _name = name
 
-def In(*parsetypes) -> tuple:
-    with open(f"./{_name}.in",'r') as file:
+def InA(*parsetypes) -> tuple:
+    with open(f"./A.in",'r') as file:
         data = file.readlines()
         for i in range(len(data)):
             if data[i] == "0": break
             spl:list = data[i].split()
             assert len(spl) == len(parsetypes), f"\n  Error reading input on line {i+1}\n  Expected {len(parsetypes)} arguments but got {len(spl)}"
             yield [parsetypes[i](spl[i]) for i in range(0,len(spl))]
+
+def InB(*parsetypes) -> tuple:
+    ...
+
+def InC(*parsetypes) -> tuple:
+    ...
 
 def Out(outs:list):
     print(*outs,sep="\n")
