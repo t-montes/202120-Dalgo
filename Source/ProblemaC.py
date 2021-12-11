@@ -15,5 +15,5 @@ if __name__ == "__main__":
     try:
         main()
     except Exception as e:
-        errorargs = "\n\t- "+"\n\t- ".join(e.args) if len(e.args) > 1 else e.args[0]
-        print(f'Raised {e.__class__.__name__}: {errorargs}')
+        errorargs = "\n\t- "+"\n\t- ".join([str(i) for i in e.args]) if len(e.args) > 1 else e.args[0]
+        input(f'Raised {e.__class__.__name__}: {errorargs}')
