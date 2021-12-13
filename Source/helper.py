@@ -5,7 +5,8 @@ global _dir
 
 def timer(format:str="El tiempo que tardó la funcion %s fue de %.9f segundos."):
     """Decorador que permite medir el tiempo en segundos que tarda una función.
-        El parámetro opcional es el formato de impresión del tiempo (debe contener almenos un '%f')"""
+       El parámetro opcional es el formato de impresión del tiempo (debe contener almenos un '%f').
+       Enviar una cadena vacía para no imprimir el tiempo."""
     def decorator(func):
         def inner(*args, **kwargs):
             t1 = _process_time_ns()/1e9
@@ -32,7 +33,7 @@ class Graph():
         self.v = vertices
         self.e = edges
 
-def InA(*parsetypes) -> tuple:
+def InA(*parsetypes):
     path:str = f"{_dir}\\A.in"
     with open(path,'r') as file:
         data:list = file.readlines()
@@ -42,7 +43,7 @@ def InA(*parsetypes) -> tuple:
             assert len(spl) == len(parsetypes), f"\n  {path}\n  Error reading input on line {i+1}\n  Expected {len(parsetypes)} arguments but got {len(spl)}"
             yield [parsetypes[i](spl[i]) for i in range(0,len(spl))]
 
-def InB() -> tuple:
+def InB():
     path:str = f"{_dir}\\B.in"
     with open(path,'r') as file:
         data:list = file.readlines()
@@ -56,14 +57,29 @@ def InB() -> tuple:
                 graphs = []
             else:
                 spl:list = [int(j) for j in data[i].split()]
-                assert len(spl) >= 2, f"\n  {path}\n  Error reading input on line {i+1}\n  Expected at least 2 arguments |v|,|e| but got {len(spl)}"
+                assert len(spl) >= 2, f"\n  Error reading input on line {i+1}\n  Expected at least 2 arguments |v|,|e| but got {len(spl)}"
                 assert len(spl) == 2*(spl[1]+1), f"\n  Error reading graph on line {i+1}\n  Expected {spl[1]} edges but got {len(spl)/2 - 2}"
                 v,e = set(j for j in range(spl[0])),split(spl[2:],spl[1])
                 graphs.append(Graph(v,e))
                 n -= 1
 
-def InC(*parsetypes) -> tuple:
-    ...
+def InC():
+    path:str = f"{_dir}\\C.in"
+    with open(path,'r') as file:
+        data:list = file.readlines()
+        n,k = [int(i) for i in data[0].split()]
+        words:list = []
+        for i in range(1,len(data)):
+            if n == 0:
+                yield words
+                if data[i] == "0": break
+                n,k = [int(i) for i in data[i].split()]
+                words = []
+            else:
+                w:str = data[i].rstrip()
+                assert len(w) == k, f"\n  Error reading word on line {i+1} ({w})\n  Expected len {k} but got len {len(w)}"
+                words.append(w)
+                n -= 1
 
 def Out(outs:list):
     print(*outs,sep="\n")

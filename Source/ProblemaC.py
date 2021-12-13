@@ -2,16 +2,25 @@
     Tony Santiago Montes Buitrago
     Juan Carlos Marin Morales
 """
+from os import getcwd
 from helper import InC,Out,define,timer
+
+@timer()
+def overlap(w1:str, w2:str) -> tuple:
+    1
+
+@timer()
+def min_str() -> str:
+    1
 
 def main():
     outs:list = []
-    for inputs in InC():
-        ...
+    for words in InC():
+        outs.append(min_str())
     Out(outs)
 
 if __name__ == "__main__":
-    define("C")
+    define("C", getcwd())
     try:
         main()
     except Exception as e:

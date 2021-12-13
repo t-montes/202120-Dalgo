@@ -5,25 +5,37 @@
 from os import getcwd
 from helper import InB,Out,define,timer,Graph
 
+def get_next_not_coloured(direct:set, edges:list):
+    """It will never no-return"""
+    for a,b in edges:
+        if a in direct:
+            return b
+        if b in direct:
+            return a
+
 @timer()
 def dif_graph(g:Graph) -> int:
     """Agrupa el grafo en 2 subgrafos que lo hacen bipartito y retorna el diferencial"""
-    l1:int = 0
     n:int = len(g.v)
+    l1,coloured = 0,set()
     while g.v:
-        v,l1 = g.v.pop(),l1+1
+        if l1: v,l1 = get_next_not_coloured(coloured, g.e),l1+1
+        else:  v,l1 = 0,1
+        g.v.discard(v)
         i:int = 0
         while i < len(g.e):
             a,b = g.e[i]
             if v==a:
+                coloured.add(b)
                 g.v.discard(b)
                 del g.e[i]
             elif v==b:
+                coloured.add(a)
                 g.v.discard(a)
                 del g.e[i]
             else:
                 i += 1
-    df = abs(n - 2*l1)
+    df = abs(len(coloured)-l1)
     return df
 
 @timer()
