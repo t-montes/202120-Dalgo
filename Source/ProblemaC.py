@@ -4,19 +4,37 @@
 """
 from os import getcwd
 from helper import InC,Out,define,timer
+from itertools import chain, combinations, permutations
+
+def powerset(iterable):
+    "powerset([1,2,3]) --> () (1,) (2,) (3,) (1,2) (1,3) (2,3) (1,2,3)"
+    return list(chain.from_iterable(combinations(iterable, r) for r in range(len(iterable)+1)))
 
 @timer()
 def overlap(w1:str, w2:str) -> tuple:
-    1
+    i = 0
+    if w2 in w1: return w1,0
+    elif w1 in w2: return w2,0
+    while not w2.startswith(w1[i:]):
+        i += 1
+    return w1[:i]+w2, len(w1[:i])
 
 @timer()
-def min_str() -> str:
-    1
+def min_str(words:list) -> str:
+    mw:list = []
+    perms = permutations(words)
+    for p in perms:
+        s:str = ""
+        for i in range(1,len(p)):
+            s = overlap(s, overlap(p[i-1],p[i])[0])[0]
+        mw.append(s)
+    w = min(mw, key=lambda u:len(u))
+    return w
 
 def main():
     outs:list = []
     for words in InC():
-        outs.append(min_str())
+        outs.append(min_str(words))
     Out(outs)
 
 if __name__ == "__main__":
