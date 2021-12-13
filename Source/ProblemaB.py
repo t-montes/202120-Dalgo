@@ -5,11 +5,6 @@
 from os import getcwd
 from helper import InB,Out,define,timer,Graph
 
-def degree(g:Graph) -> dict:
-    degree:dict = {}
-    for a,b in g.e:
-        1
-
 @timer()
 def dif_graph(g:Graph) -> int:
     """Agrupa el grafo en 2 subgrafos que lo hacen bipartito y retorna el diferencial"""
@@ -58,18 +53,4 @@ if __name__ == "__main__":
     except Exception as e:
         errorargs = "\n\t- "+"\n\t- ".join([str(i) for i in e.args]) if len(e.args) > 1 else e.args[0]
         input(f'Raised {e.__class__.__name__}: {errorargs}')
-    """for a in [
-        [1,1,2,2,3,4,7], #0
-        [1,3,3,4,4,5,9,10,11,12,18,20], #0
-        [0,1,1,1,2,2,3,4,4,6,7,9,12,19], #1
-        [15,7,2,9,1,0,10,5,9,4,2,11,15,13], #1
-        [1,4,1,9,0,0,11,53,92,41,24,1,5,163], #1
-        [9,12,19], #1
-        [7,9,12,19], #1
-        [412,901,5,42,14,64,21,1,1,905,1,1,1,3,6,200,0,0,3,122,15,906], #0
-        [0,5,1,6], #0
-        [25,9,8,5,3,1] #1
-    ]:
-        r = min_dif(list(a[:]))
-        print(4,r,sep=" - ")
-    """
+    
