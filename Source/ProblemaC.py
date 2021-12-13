@@ -4,11 +4,7 @@
 """
 from os import getcwd
 from helper import InC,Out,define,timer
-from itertools import chain, combinations, permutations
-
-def powerset(iterable):
-    "powerset([1,2,3]) --> () (1,) (2,) (3,) (1,2) (1,3) (2,3) (1,2,3)"
-    return list(chain.from_iterable(combinations(iterable, r) for r in range(len(iterable)+1)))
+from itertools import permutations
 
 @timer()
 def overlap(w1:str, w2:str) -> tuple:

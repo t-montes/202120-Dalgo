@@ -68,17 +68,17 @@ def InC():
     with open(path,'r') as file:
         data:list = file.readlines()
         n,k = [int(i) for i in data[0].split()]
-        words:list = []
+        words:set = set()
         for i in range(1,len(data)):
             if n == 0:
                 yield words
                 if data[i] == "0": break
                 n,k = [int(i) for i in data[i].split()]
-                words = []
+                words = set()
             else:
                 w:str = data[i].rstrip()
                 assert len(w) == k, f"\n  Error reading word on line {i+1} ({w})\n  Expected len {k} but got len {len(w)}"
-                words.append(w)
+                words.add(w)
                 n -= 1
 
 def Out(outs:list):
