@@ -35,7 +35,8 @@ def min_dif(d:list) -> int:
         i:int = 2*d.pop()
         if  i <= s_pos: s_pos -= i
         elif i > s_neg: s_neg = s_pos-i
-    return min(s_pos,abs(s_neg))
+    m = min(s_pos,abs(s_neg))
+    return m
 
 def main():
     outs:list = []
@@ -53,4 +54,3 @@ if __name__ == "__main__":
     except Exception as e:
         errorargs = "\n\t- "+"\n\t- ".join([str(i) for i in e.args]) if len(e.args) > 1 else e.args[0]
         input(f'Raised {e.__class__.__name__}: {errorargs}')
-    
